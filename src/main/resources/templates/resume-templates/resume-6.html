@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume - Creative</title>
+    <style>
+        body {
+            font-family: 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: Black;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 25px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2575fc;
+        }
+
+        h2 {
+            color: #6a11cb;
+            margin-top: 20px;
+        }
+
+        .section-container {
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 5px solid #6a11cb;
+        }
+
+        .section-container h3 {
+            margin: 5px 0;
+            color: #2575fc;
+        }
+
+        .section-container ul {
+            list-style: circle;
+            padding-left: 20px;
+        }
+
+        .section-container ul li {
+            padding: 4px 0;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #007bff, #6dcff6); 
+            color: white; 
+            border: none;
+            border-radius: 20px; /* Rounded button */
+            cursor: pointer;
+            z-index: 10; 
+            font-size: 1em;
+            font-weight: bold; 
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for the button */
+        }
+        .btn-menu{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        text-align: center;
+        padding: 50px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Resume</h1>
+
+    <div class="section-container">
+        <h2>Personal Information</h2>
+        <p><strong>Name:</strong> <span th:text="${resume.name}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${resume.email}"></span></p>
+        <p><strong>Phone:</strong> <span th:text="${resume.phno}"></span></p>
+    </div>
+
+    <div th:if="${resume.education != null and !resume.education.empty}">
+        <div class="section-container">
+            <h2>Education</h2>
+            <div th:each="edu : ${resume.education}">
+                <h3><span th:text="${edu.degree}"></span></h3>
+                <p><strong>Institution:</strong> <span th:text="${edu.institution}"></span></p>
+                <p><strong>Year:</strong> <span th:text="${edu.year}"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div th:if="${resume.experience != null and !resume.experience.empty}">
+        <div class="section-container">
+            <h2>Work Experience</h2>
+            <div th:each="exp : ${resume.experience}">
+                <h3><span th:text="${exp.company}"></span></h3>
+                <p><strong>Title:</strong> <span th:text="${exp.jobTitle}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${exp.jobDescription}"></span></p>
+                <p><strong>Years:</strong> <span th:text="${exp.jobYears}"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-container">
+        <h2>Skills</h2>
+        <ul>
+            <li th:each="skill : ${resume.skills}" th:text="${skill}"></li>
+        </ul>
+    </div>
+
+    <div class="section-container">
+        <h2>Hobbies</h2>
+        <ul>
+            <li th:each="hobby : ${resume.hobbies}" th:text="${hobby}"></li>
+        </ul>
+    </div>
+    
+    <div id="savePDFLink" th:if="${resume.showDiv}" class="btn-menu">
+            <a href="/save" target="_blank" class="btn">Save as PDF</a>
+            <button onclick="window.history.back();" class="btn">Go Back</button>
+        </div>
+        <script>
+        if (window.self !== window.top) {
+        	const savePDFLink = document.getElementById('savePDFLink');
+        	if (savePDFLink) {
+        		savePDFLink.style.display = 'none';
+        	}
+        }
+        </script>
+        
+</div>
+</body>
+
+</html>

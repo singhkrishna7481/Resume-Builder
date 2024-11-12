@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Demos</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fafb;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3.5em;
+            color: #2c3e50;
+            margin-top: 60px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Container for the demo items */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            grid-column-gap: 40px; /* Gap between columns */
+            grid-row-gap: 40px;    /* Gap between rows */
+            padding: 40px;
+            width: 100%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* Demo Section */
+        .demo {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* Hover effect */
+        .demo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .demo-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px; /* Set a fixed height */
+            border: none;
+            border-radius: 15px;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+
+        iframe:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            font-size: 1.1em;
+            color: #555;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Hover button styles */
+        .hover-button {
+            padding: 12px 22px;
+            background: linear-gradient(45deg, #007bff, #00bcd4);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .demo:hover .hover-button {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Spinner for iframe loading */
+        .spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 4px solid transparent;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.8em;
+            }
+
+            .container {
+                padding: 20px;
+                grid-column-gap: 20px; /* Smaller gap between columns on small screens */
+                grid-row-gap: 30px; /* Smaller gap between rows on small screens */
+            }
+
+            iframe {
+                height: 250px; /* Adjust iframe height on small screens */
+            }
+
+            .hover-button {
+                padding: 10px 18px;
+                font-size: 0.95em;
+            }
+
+            h2 {
+                font-size: 1.4em;
+            }
+
+            h3 {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Resume Previews</h1>
+
+<div class="container">
+    <!-- Demo 1 -->
+    <div id="demo1" class="demo">
+        <h2>Simple & Elegant Design</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo" onload="resizeIframe(this)"></iframe>
+            <h3>Embrace simplicity with a clean, modern look for your resume.</h3>
+            <a href="demo" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 2 -->
+    <div id="demo2" class="demo">
+        <h2>Corporate Professional Layout</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/1" onload="resizeIframe(this)"></iframe>
+            <h3>Designed for professionals looking to make a strong first impression.</h3>
+            <a href="demo/1" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 3 -->
+    <div id="demo3" class="demo">
+        <h2>Modern Minimalist Design</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/2" onload="resizeIframe(this)"></iframe>
+            <h3>Bold, dynamic layout that still keeps things simple and to the point.</h3>
+            <a href="demo/2" class="hover-button">View</a>
+        </div>
+    </div>
+    
+</div>
+
+<div class="container">
+    <!-- Demo 4 -->
+    <div id="demo4" class="demo">
+        <h2>Stylish Corporate Design</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/3" onload="resizeIframe(this)"></iframe>
+            <h3>A polished look that blends corporate professionalism with modern flair.</h3>
+            <a href="demo/3" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 5 -->
+    <div id="demo5" class="demo">
+        <h2>Creative Layout</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/4" onload="resizeIframe(this)"></iframe>
+            <h3>Combining creativity and professionalism for a balanced design.</h3>
+            <a href="demo/4" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 6 -->
+    <div id="demo6" class="demo">
+        <h2>Tech-Savvy Resume Design</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/5" onload="resizeIframe(this)"></iframe>
+            <h3>Designed for tech professionals who want to show off their skills.</h3>
+            <a href="demo/5" class="hover-button">View</a>
+        </div>
+    </div>
+    
+</div>
+
+<div class="container">
+    <!-- Demo 7 -->
+    <div id="demo7" class="demo">
+        <h2>Minimalist with a Pop of Color</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/6" onload="resizeIframe(this)"></iframe>
+            <h3>Simple design with vibrant accents for a modern touch.</h3>
+            <a href="demo/6" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 8 -->
+    <div id="demo8" class="demo">
+        <h2>Elegant and Professional</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/7" onload="resizeIframe(this)"></iframe>
+            <h3>For those who prefer a sophisticated and timeless resume style.</h3>
+            <a href="demo/7" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 9 -->
+    <div id="demo9" class="demo">
+        <h2>Dynamic and Bold Layout</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/8" onload="resizeIframe(this)"></iframe>
+            <h3>Make an impact with a design that stands out.</h3>
+            <a href="demo/8" class="hover-button">View</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Demo 10 -->
+    <div id="demo10" class="demo">
+        <h2>Professional ATS-Optimized Resume</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/9" onload="resizeIframe(this)"></iframe>
+            <h3>Tailored for higher chances of passing Applicant Tracking Systems (ATS).</h3>
+            <a href="demo/9" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 11 -->
+    <div id="demo11" class="demo">
+        <h2>Creative & Modern CV</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/10" onload="resizeIframe(this)"></iframe>
+            <h3>Perfect for those in creative fields, with a stylish and innovative layout.</h3>
+            <a href="demo/10" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 12 -->
+    <div id="demo12" class="demo">
+        <h2>Tech-Centric Resume Design</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/11" onload="resizeIframe(this)"></iframe>
+            <h3>Showcase your technical expertise in a sharp, modern design.</h3>
+            <a href="demo/11" class="hover-button">View</a>
+        </div>
+        	
+    </div>
+</div>
+
+<div class="container">
+    <!-- Demo 13 -->
+    <div id="demo13" class="demo">
+        <h2> Neon Glows and Dynamic Layout</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/12" onload="resizeIframe(this)"></iframe>
+            <h3>Designed for a striking, futuristic impression while maintaining clarity and ATS compatibility.</h3>
+            <a href="demo/12" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 14 -->
+    <div id="demo14" class="demo">
+        <h2>Geometric Shapes and Bold Colors</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/13" onload="resizeIframe(this)"></iframe>
+            <h3>Embrace creativity with bold designs that stand out in the most competitive industries.</h3>
+            <a href="demo/13" class="hover-button">View</a>
+        </div>
+    </div>
+
+    <!-- Demo 15 -->
+    <div id="demo15" class="demo">
+        <h2>Space Age</h2>
+        <div class="demo-content">
+            <div class="spinner"></div> 
+            <iframe src="demo/14" onload="resizeIframe(this)"></iframe>
+            <h3>Showcase your technical prowess with a sleek, futuristic design that speaks volumes.</h3>
+            <a href="demo/14" class="hover-button">View</a>
+        </div> 
+    </div>
+</div>
+
+
+<script>
+    // Resize iframe based on content height
+    function resizeIframe(iframe) {
+        const spinner = iframe.previousElementSibling; // Spinner is the previous sibling of iframe
+        if (spinner) {
+            spinner.style.display = 'none'; // Hide spinner after iframe loads
+        }
+    }
+</script>
+
+</body>
+</html>

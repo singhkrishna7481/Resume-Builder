@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #222;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            color: #ff007f;
+            text-shadow: 0 0 15px #ff007f;
+        }
+        .section-title {
+            font-size: 1.6em;
+            color: #00ff99;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px #00ff99;
+        }
+        .section-container {
+            margin-bottom: 30px;
+            border-bottom: 2px dashed #444;
+            padding-bottom: 20px;
+        }
+        p, h3 {
+            font-size: 1.1em;
+            color: #f0f0f0;
+        }
+        hr {
+            border: 1px solid #444;
+        }
+        .btn {
+            padding: 15px 40px;
+            background-color: #ff007f;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.3);
+        }
+        .btn:hover {
+            background-color: #ff00b3;
+            box-shadow: 0 5px 30px rgba(255, 0, 179, 0.5);
+        }
+        .btn-menu {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Resume</h1>
+
+        <!-- Personal Information -->
+        <div class="section-container">
+            <h2 class="section-title">Personal Information</h2>
+            <p><strong>Name:</strong> <span th:text="${resume.name}"></span></p>
+            <p><strong>Email:</strong> <span th:text="${resume.email}"></span></p>
+            <p><strong>Phone:</strong> <span th:text="${resume.phno}"></span></p>
+        </div>
+
+        <!-- Education -->
+        <div th:if="${resume.education != null and !resume.education.empty}">
+            <div class="section-container">
+                <h2 class="section-title">Education</h2>
+                <div th:each="edu : ${resume.education}">
+                    <h3>Degree: <span th:text="${edu.degree}"></span></h3>
+                    <p><strong>College/University:</strong><span th:text="${edu.institution}"></span></p>
+                    <p><strong>Year of Passing:</strong> <span th:text="${edu.year}"></span></p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <!-- Work Experience -->
+        <div th:if="${resume.experience != null and !resume.experience.empty}">
+            <div class="section-container">
+                <h2 class="section-title">Work Experience</h2>
+                <div th:each="exp : ${resume.experience}">
+                    <h3>Company: <span th:text="${exp.company}"></span></h3>
+                    <p><strong>Job Title:</strong> <span th:text="${exp.jobTitle}"></span></p>
+                    <p><strong>Description:</strong> <span th:text="${exp.jobDescription}"></span></p>
+                    <p><strong>Years of Experience:</strong> <span th:text="${exp.jobYears}"></span></p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="section-container">
+            <h2 class="section-title">Skills</h2>
+            <ul>
+                <li th:each="skill : ${resume.skills}" th:text="${skill}"></li>
+            </ul>
+        </div>
+
+        <!-- Hobbies -->
+        <div class="section-container">
+            <h2 class="section-title">Hobbies</h2>
+            <ul>
+                <li th:each="hobby : ${resume.hobbies}" th:text="${hobby}"></li>
+            </ul>
+        </div>
+
+        <div id="savePDFLink" th:if="${resume.showDiv}" class="btn-menu">
+            <a href="/save" target="_blank" class="btn">Save as PDF</a>
+            <button onclick="window.history.back();" class="btn">Go Back</button>
+        </div>
+    </div>
+</body>
+</html>

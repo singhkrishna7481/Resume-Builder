@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Resume Builder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: 20px;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+        h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .form-group label {
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .form-group input, .form-group textarea {
+            background-color: #f9f9f9;
+        }
+        .section-container {
+            padding: 20px;
+            background-color: #fafafa;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .delete-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-button:hover {
+            background-color: #d32f2f;
+        }
+        .add-button {
+            background-color: #0275d8;
+            color: white;
+            font-size: 16px;
+            padding: 12px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .add-button:hover {
+            background-color: #0056b3;
+        }
+        .button-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        button[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            padding: 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .section-title {
+            font-size: 18px;
+            color: #4CAF50;
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Creative Resume Builder</h1>
+    <form action="add" method="post">
+        <!-- Personal Information -->
+        <div class="section-container">
+            <h2>Personal Information</h2>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phno" required>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section-container">
+            <h2 class="section-title">Education</h2>
+            <div id="education-section">
+                <div class="section-container">
+                    <button type="button" class="delete-button" onclick="deleteSection(this)">X</button>
+                    <div class="form-group">
+                        <label>School/University</label>
+                        <input type="text" name="school[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Degree</label>
+                        <input type="text" name="degree[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Year of Graduation</label>
+                        <input type="number" name="graduationYear[]" required>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="add-button" onclick="addEducation()">Add Education</button>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="section-container">
+            <h2 class="section-title">Work Experience</h2>
+            <div id="experience-section">
+                <div class="section-container">
+                    <button type="button" class="delete-button" onclick="deleteSection(this)">X</button>
+                    <div class="form-group">
+                        <label>Company</label>
+                        <input type="text" name="company[]">
+                    </div>
+                    <div class="form-group">
+                        <label>Job Title</label>
+                        <input type="text" name="jobTitle[]">
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="jobDescription[]" rows="4"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Years of Experience</label>
+                        <input type="number" name="jobYears[]">
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="add-button" onclick="addExperience()">Add Experience</button>
+        </div>
+
+        <!-- Skills -->
+        <div class="form-group">
+            <h2>Skills</h2>
+            <input type="text" id="skills" name="skills" required="required" placeholder="e.g., JavaScript, CSS, Python">
+        </div>
+
+        <!-- Hobbies -->
+        <div class="form-group">
+            <h2>Hobbies</h2>
+            <input type="text" id="hobbies" name="hobbies" required="required" placeholder="e.g., Reading, Traveling, Music">
+        </div>
+
+        <button type="submit">Generate Resume</button>
+    </form>
+</div>
+
+<script>
+    function addEducation() {
+        const educationSection = document.getElementById("education-section");
+        const newEducation = document.createElement("div");
+        newEducation.classList.add("section-container");
+        newEducation.innerHTML = `
+            <button type="button" class="delete-button" onclick="deleteSection(this)">X</button>
+            <div class="form-group">
+                <label>School/University</label>
+                <input type="text" name="school[]" required>
+            </div>
+            <div class="form-group">
+                <label>Degree</label>
+                <input type="text" name="degree[]" required>
+            </div>
+            <div class="form-group">
+                <label>Year of Graduation</label>
+                <input type="number" name="graduationYear[]" required>
+            </div>
+        `;
+        educationSection.appendChild(newEducation);
+    }
+
+    function addExperience() {
+        const experienceSection = document.getElementById("experience-section");
+        const newExperience = document.createElement("div");
+        newExperience.classList.add("section-container");
+        newExperience.innerHTML = `
+            <button type="button" class="delete-button" onclick="deleteSection(this)">X</button>
+            <div class="form-group">
+                <label>Company</label>
+                <input type="text" name="company[]" required>
+            </div>
+            <div class="form-group">
+                <label>Job Title</label>
+                <input type="text" name="jobTitle[]" required>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="jobDescription[]" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label>Years of Experience</label>
+                <input type="number" name="jobYears[]" required>
+            </div>
+        `;
+        experienceSection.appendChild(newExperience);
+    }
+
+    function deleteSection(button) {
+        button.parentElement.remove();
+    }
+</script>
+
+</body>
+</html>
